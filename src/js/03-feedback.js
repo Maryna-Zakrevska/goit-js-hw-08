@@ -1,4 +1,8 @@
+import throttle from 'lodash/throttle';
 const formRef = document.querySelector('.feedback-form');
+
+formRef.email.setAttribute('required', true);
+formRef.message.setAttribute('required', true);
 
 const savedData = () => JSON.parse(localStorage.getItem('feedback-form-state'));
 
@@ -10,7 +14,7 @@ if (savedData()) {formRef.email.value  = savedData().email;
   localStorage.setItem('feedback-form-state', JSON.stringify(formDataInitial));}
 
 
-formRef.addEventListener('input', callback);
+formRef.addEventListener('input', throttle(callback, 500, { 'trailing': false }));
 function callback(event) {
     const { email, message } = event.currentTarget;
     
@@ -18,8 +22,9 @@ function callback(event) {
       email: email.value,
       message: message.value,
     };
+    
     localStorage.setItem('feedback-form-state', JSON.stringify(formData));}
 
 
     formRef.addEventListener('submit', onFormSubmit);
-    function onFormSubmit(event) {event.preventDefault(); console.log(savedData()); localStorage.removeItem('feedback-form-state'); }
+    function onFormSubmit(event) {event.preventDefault(); console.log(savedData()); localStorage.removeItem('feedback-form-state');  event.currentTarget.reset();}
