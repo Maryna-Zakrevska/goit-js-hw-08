@@ -32,4 +32,4 @@ var i=require("./debounce"),e=require("./isObject"),n="Expected a function";func
 },{"./debounce":"CXfR","./isObject":"u9vI"}],"TTyb":[function(require,module,exports) {
 "use strict";var e=t(require("lodash/throttle"));function t(e){return e&&e.__esModule?e:{default:e}}const a=document.querySelector(".feedback-form");a.email.setAttribute("required",!0),a.message.setAttribute("required",!0);const r=()=>JSON.parse(localStorage.getItem("feedback-form-state"));if(r())a.email.value=r().email,a.message.value=r().message;else{const e={email:"",message:""};localStorage.setItem("feedback-form-state",JSON.stringify(e))}function s(e){const{email:t,message:a}=e.currentTarget,r={email:t.value,message:a.value};localStorage.setItem("feedback-form-state",JSON.stringify(r))}function l(e){e.preventDefault(),console.log(r()),localStorage.removeItem("feedback-form-state"),e.currentTarget.reset()}a.addEventListener("input",(0,e.default)(s,500,{trailing:!1})),a.addEventListener("submit",l);
 },{"lodash/throttle":"Ywd4"}]},{},["TTyb"], null)
-//# sourceMappingURL=/goit-js-hw-08/03-feedback.208719fd.js.map
+//# sourceMappingURL=/goit-js-hw-08/03-feedback.04be288a.js.map
