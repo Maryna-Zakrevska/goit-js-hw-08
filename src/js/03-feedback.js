@@ -14,8 +14,8 @@ if (savedData()) {formRef.email.value  = savedData().email;
   localStorage.setItem('feedback-form-state', JSON.stringify(formDataInitial));}
 
 
-formRef.addEventListener('input', throttle(callback, 500, { 'trailing': false }));
-function callback(event) {
+formRef.addEventListener('input', throttle(onFormInput, 500, { 'trailing': false }));
+function onFormInput(event) {
     const { email, message } = event.currentTarget;
     
     const formData = {
